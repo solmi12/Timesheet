@@ -1,30 +1,30 @@
 pipeline {
-agent any
-stages {
-stage ('GIT') {
-steps {
-echo "Getting Project from Git";
-git "https://github.com/solmi12/TimesheetProject-.git";
+ agent any
+ stages {
+   stage ('GIT') {
+ steps {
+   echo "Getting Project from Git";
+    git "https://github.com/solmi12/TimesheetProject-.git";
+        }
+  }
+ stage ('MVN CLEAN') {
+ steps {
+   echo "Maven Clean";
+ bat 'mvn clean';
 }
 }
-stage ('MVN CLEAN') {
-steps {
-echo "Maven Clean";
-bat 'mvn clean';
-}
-}
-stage ('MVN PACKAGE') {
-steps {
-echo "Maven Package";
-bat 'mvn package';
-}
+ stage ('MVN PACKAGE') {
+ steps {
+   echo "Maven Package";
+  bat 'mvn package';
+  }
 }
 stage ('MVN INSTALL') {
 steps {
-echo "Maven Install";
-bat 'mvn install';
-}
-}
+  echo "Maven Install";
+ bat 'mvn install';
+ }
+ }
 stage ('MVN TEST') {
 steps {
 echo "Maven Test JUnit";
